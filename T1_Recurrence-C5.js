@@ -174,7 +174,7 @@ var init = () => {
         c4Term.isAvailable = false;
     }
     {
-        c5Term = theory.createMilestoneUpgrade(3, 1);
+        c5Term = theory.createMilestoneUpgrade(4, 1);
         c5Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-3}^{0.4}");
         c5Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-3}^{0.4}");
         c5Term.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); updateAvailability(); };
