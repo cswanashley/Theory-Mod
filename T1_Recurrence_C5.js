@@ -175,8 +175,8 @@ var init = () => {
     }
     {
         c5Term = theory.createMilestoneUpgrade(4, 1);
-        c5Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-3}^{0.4}");
-        c5Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-3}^{0.4}");
+        c5Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-3}^{0.35}");
+        c5Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-3}^{0.35}");
         c5Term.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); updateAvailability(); };
         c5Term.isAvailable = false;
     }
@@ -218,7 +218,7 @@ var tick = (elapsedTime, multiplier) => {
         let term1 = vc1 * vc2 * (logTerm.level > 0 ? BigNumber.ONE + rhoN.Max(BigNumber.ONE).log() / BigNumber.HUNDRED : BigNumber.ONE);
         let term2 = c3Term.level > 0 ? (vc3 * rhoNm1.pow(0.25)) : BigNumber.ZERO;
         let term3 = c4Term.level > 0 ? (vc4 * rhoNm2.pow(0.3)) : BigNumber.ZERO;
-        let term4 = c5Term.level > 0 ? (vc5 * rhoNm3.pow(0.4)) : BigNumber.ZERO;
+        let term4 = c5Term.level > 0 ? (vc5 * rhoNm3.pow(0.35)) : BigNumber.ZERO;
 
         currency.value = rhoN + bonus * tickPower * (term1 + term2 + term3 + term4) + epsilon;
 
@@ -255,7 +255,7 @@ var getPrimaryEquation = () => {
         result += "+c_4\\rho_{n-2}^{0.3}";
 
     if (c5Term.level > 0)
-        result += "+c_5\\rho_{n-3}^{0.4}";
+        result += "+c_5\\rho_{n-3}^{0.35}";
 
     if (logTerm.level > 0 && c3Term.level > 0 && c4Term.level > 0)
         theory.primaryEquationScale = 0.75;
