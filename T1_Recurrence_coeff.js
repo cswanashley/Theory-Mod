@@ -69,9 +69,9 @@ var init = () => {
 
     // c3
     {
-        let getDesc = (level) => "c_3=5^{" + level + "}";
+        let getDesc = (level) => "c_3=10^{" + level + "}";
         let getInfo = (level) => "c_3=" + getC3(level).toString(0);
-        c3 = theory.createUpgrade(4, currency, new ExponentialCost(1e4, 4.5 * Math.log2(10)));
+        c3 = theory.createUpgrade(4, currency, new ExponentialCost(1e4, 3.5 * Math.log2(10)));
         c3.getDescription = (_) => Utils.getMath(getDesc(c3.level));
         c3.getInfo = (amount) => Utils.getMathTo(getInfo(c3.level), getInfo(c3.level + amount));
         c3.isAvailable = false;
@@ -79,7 +79,7 @@ var init = () => {
 
     // c4
     {
-        let getDesc = (level) => "c_4=3^{" + level + "}";
+        let getDesc = (level) => "c_4=5^{" + level + "}";
         let getInfo = (level) => "c_4=" + getC4(level).toString(0);
         c4 = theory.createUpgrade(5, currency, new ExponentialCost(1e10, 8 * Math.log2(10)));
         c4.getDescription = (_) => Utils.getMath(getDesc(c4.level));
@@ -250,8 +250,8 @@ var getQ2 = (level) => BigNumber.TWO.pow(level);
 var getC1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 1);
 var getC1Exponent = (level) => BigNumber.from(1 + 0.05 * level);
 var getC2 = (level) => BigNumber.TWO.pow(level);
-var getC3 = (level) => BigNumber.FIVE.pow(level);
-var getC4 = (level) => BigNumber.THREE.pow(level);
+var getC3 = (level) => BigNumber.TEN.pow(level);
+var getC4 = (level) => BigNumber.FIVE.pow(level);
 var getC5 = (level) => BigNumber.TWO.pow(level);
 var getTickspeed = () => getQ1(q1.level) * getQ2(q2.level);
 
