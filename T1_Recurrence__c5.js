@@ -91,7 +91,7 @@ var init = () => {
     {
         let getDesc = (level) => "c_5=10^{" + level + "}";
         let getInfo = (level) => "c_5=" + getC5(level).toString(0);
-        c5 = theory.createUpgrade(6, currency, new ExponentialCost(1e25, 17.5 * Math.log2(10)));
+        c5 = theory.createUpgrade(6, currency, new ExponentialCost(1e35, 25 * Math.log2(10)));
         c5.getDescription = (_) => Utils.getMath(getDesc(c5.level));
         c5.getInfo = (amount) => Utils.getMathTo(getInfo(c5.level), getInfo(c5.level + amount));
         c5.isAvailable = false;
