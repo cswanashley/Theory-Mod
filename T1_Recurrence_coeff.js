@@ -100,8 +100,8 @@ var init = () => {
     /////////////////////
     // Permanent Upgrades
     theory.createPublicationUpgrade(0, currency, 1e10);
-    theory.createBuyAllUpgrade(1, currency, 1e13);
-    theory.createAutoBuyerUpgrade(2, currency, 1e15);
+    theory.createBuyAllUpgrade(1, currency, 1e1);
+    theory.createAutoBuyerUpgrade(2, currency, 1e1);
     
     ///////////////////////
     //// Milestone Upgrades
@@ -250,9 +250,9 @@ var getQ2 = (level) => BigNumber.TWO.pow(level);
 var getC1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 1);
 var getC1Exponent = (level) => BigNumber.from(1 + 0.05 * level);
 var getC2 = (level) => BigNumber.TWO.pow(level);
-var getC3 = (level) => BigNumber.TEN.pow(level);
+var getC3 = (level) => BigNumber.SEVEN.pow(level);
 var getC4 = (level) => BigNumber.FIVE.pow(level);
-var getC5 = (level) => BigNumber.TWO.pow(level);
+var getC5 = (level) => BigNumber.THREE.pow(level);
 var getTickspeed = () => getQ1(q1.level) * getQ2(q2.level);
 
 init();
