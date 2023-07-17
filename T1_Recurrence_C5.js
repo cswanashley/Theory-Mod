@@ -258,7 +258,7 @@ var getPrimaryEquation = () => {
         result += "+c_5\\rho_{n-3}^{0.4}";
 
     if (logTerm.level > 0 && c3Term.level > 0 && c4Term.level > 0)
-        theory.primaryEquationScale = 0.85;
+        theory.primaryEquationScale = 0.75;
     else
         theory.primaryEquationScale = 1;
  
