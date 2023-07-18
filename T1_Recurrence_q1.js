@@ -77,7 +77,7 @@ var init = () => {
 
     // c4
     {
-        let getDesc = (level) => "c_4=5^{" + level + "}";
+        let getDesc = (level) => "c_4=9^{" + level + "}";
         let getInfo = (level) => "c_4=" + getC4(level).toString(0);
         c4 = theory.createUpgrade(5, currency, new ExponentialCost(1e10, 8 * Math.log2(10)));
         c4.getDescription = (_) => Utils.getMath(getDesc(c4.level));
@@ -121,23 +121,23 @@ var init = () => {
 
     {
         c3Term = theory.createMilestoneUpgrade(2, 1);
-        c3Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-1}^{0.2}");
-        c3Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-1}^{0.2}");
+        c3Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-1}^{0.3}");
+        c3Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-1}^{0.3}");
         c3Term.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); updateAvailability(); };
         c3Term.canBeRefunded = (_) => c4Term.level == 0;
     }
 
     {
         c4Term = theory.createMilestoneUpgrade(3, 1);
-        c4Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-2}^{0.3}");
-        c4Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-2}^{0.3}");
+        c4Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-2}^{0.35}");
+        c4Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-2}^{0.35}");
         c4Term.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); updateAvailability(); };
         c4Term.isAvailable = false;
     }
     {
         c5Term = theory.createMilestoneUpgrade(4, 1);
-        c5Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-3}^{0.25}");
-        c5Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-3}^{0.25}");
+        c5Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-3}^{0.4}");
+        c5Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-3}^{0.4}");
         c5Term.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); updateAvailability(); };
         c5Term.isAvailable = false;
     }
@@ -207,13 +207,13 @@ var getPrimaryEquation = () => {
         result += "\\left(1+\\frac{\\ln(\\rho_n)}{100}\\right)";
 
     if (c3Term.level > 0)
-        result += "+c_3\\rho_{n-1}^{0.2}";
+        result += "+c_3\\rho_{n-1}^{0.3}";
 
     if (c4Term.level > 0)
-        result += "+c_4\\rho_{n-2}^{0.3}";
+        result += "+c_4\\rho_{n-2}^{0.35}";
 
     if (c5Term.level > 0)
-        result += "+c_5\\rho_{n-3}^{0.25}";
+        result += "+c_5\\rho_{n-3}^{0.4}";
 
     if (logTerm.level > 0 && c3Term.level > 0 && c4Term.level > 0)
         theory.primaryEquationScale = 0.75;
@@ -247,8 +247,8 @@ var getQ2 = (level) => BigNumber.TWO.pow(level);
 var getC1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 1);
 var getC2 = (level) => BigNumber.TWO.pow(level);
 var getC3 = (level) => BigNumber.SEVEN.pow(level);
-var getC4 = (level) => BigNumber.FIVE.pow(level);
-var getC5 = (level) => BigNumber.NINE.pow(level);
+var getC4 = (level) => BigNumber.NINE.pow(level);
+var getC5 = (level) => BigNumber.TEN.pow(level);
 var getTickspeed = () => getQ1(q1.level).pow(getQ1Exponent(q1Exp.level)) * getQ2(q2.level);
 
 init();
