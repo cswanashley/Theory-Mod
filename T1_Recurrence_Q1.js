@@ -31,7 +31,7 @@ var init = () => {
 
     // q1 (Tickspeed)
     {
-        let getDesc = (level) => "q_1=" + getQ1(level).toString(0);
+        let getDesc = (level) => "q_1=" + getQ1(q1.level).pow(getQ1Exponent(q1Exp.level)).toString(0);
         q1 = theory.createUpgrade(0, currency, new FirstFreeCost(new ExponentialCost(5, Math.log2(2))));
         q1.getDescription = (_) => Utils.getMath(getDesc(q1.level));
         q1.getInfo = (amount) => Utils.getMathTo(getDesc(q1.level), getDesc(q1.level + amount));
@@ -207,13 +207,13 @@ var getPrimaryEquation = () => {
         result += "\\left(1+\\frac{\\ln(\\rho_n)}{100}\\right)";
 
     if (c3Term.level > 0)
-        result += "+c_3\\rho_{n-1}^{0.25}";
+        result += "+c_3\\rho_{n-1}^{0.2}";
 
     if (c4Term.level > 0)
         result += "+c_4\\rho_{n-2}^{0.3}";
 
     if (c5Term.level > 0)
-        result += "+c_5\\rho_{n-3}^{0.35}";
+        result += "+c_5\\rho_{n-3}^{0.25}";
 
     if (logTerm.level > 0 && c3Term.level > 0 && c4Term.level > 0)
         theory.primaryEquationScale = 0.75;
