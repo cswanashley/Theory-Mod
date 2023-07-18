@@ -4,8 +4,8 @@ import { parseBigNumber, BigNumber } from "../api/BigNumber";
 import { theory } from "../api/Theory";
 import { Utils } from "../api/Utils";
 
-var id = "recurrence_c5";
-var name = "Recurrence Relation";
+var id = "recurrence_q1";
+var name = "Recurrence Relation (Q1)";
 var description = "An implementation of the 'Recurrence Relation' theory from the game.";
 var authors = "Gilles-Philippe Paillé, cswanashley";
 var version = 1;
@@ -21,9 +21,7 @@ var epsilon = BigNumber.from(1e-8);
 
 var currency;
 var q1, q2, c1, c2, c3, c4, c5;
-var c1Exp, logTerm, c3Term, c4Term, c5Term;
-
-var chapter1, chapter2, chapter3;
+var q1Exp, logTerm, c3Term, c4Term, c5Term;
 
 var init = () => {
     currency = theory.createCurrency();
@@ -69,9 +67,9 @@ var init = () => {
 
     // c3
     {
-        let getDesc = (level) => "c_3=10^{" + level + "}";
+        let getDesc = (level) => "c_3=7^{" + level + "}";
         let getInfo = (level) => "c_3=" + getC3(level).toString(0);
-        c3 = theory.createUpgrade(4, currency, new ExponentialCost(1e4, 4.5 * Math.log2(10)));
+        c3 = theory.createUpgrade(4, currency, new ExponentialCost(1e4, 3.5 * Math.log2(10)));
         c3.getDescription = (_) => Utils.getMath(getDesc(c3.level));
         c3.getInfo = (amount) => Utils.getMathTo(getInfo(c3.level), getInfo(c3.level + amount));
         c3.isAvailable = false;
@@ -79,7 +77,7 @@ var init = () => {
 
     // c4
     {
-        let getDesc = (level) => "c_4=10^{" + level + "}";
+        let getDesc = (level) => "c_4=5^{" + level + "}";
         let getInfo = (level) => "c_4=" + getC4(level).toString(0);
         c4 = theory.createUpgrade(5, currency, new ExponentialCost(1e10, 8 * Math.log2(10)));
         c4.getDescription = (_) => Utils.getMath(getDesc(c4.level));
@@ -89,7 +87,7 @@ var init = () => {
 
   // c5
     {
-        let getDesc = (level) => "c_5=10^{" + level + "}";
+        let getDesc = (level) => "c_5=3^{" + level + "}";
         let getInfo = (level) => "c_5=" + getC5(level).toString(0);
         c5 = theory.createUpgrade(6, currency, new ExponentialCost(1e35, 25 * Math.log2(10)));
         c5.getDescription = (_) => Utils.getMath(getDesc(c5.level));
@@ -100,55 +98,18 @@ var init = () => {
     /////////////////////
     // Permanent Upgrades
     theory.createPublicationUpgrade(0, currency, 1e10);
-    theory.createBuyAllUpgrade(1, currency, 1e13);
-    theory.createAutoBuyerUpgrade(2, currency, 1e20);
-  
+    theory.createBuyAllUpgrade(1, currency, 1e1);
+    theory.createAutoBuyerUpgrade(2, currency, 1e1);
     
-    
-    
-    /////////////////
-    //// Achievements
-    ac1 = theory.createAchievementCategory(0, "Upgrades");
-    theory.createAchievement(0, ac1, "beginner", "Buy the first upgrade", () => q1.level > 0);
-    theory.createAchievement(1, ac1, "Starter", "Buy 10 upgrades of q1", () => q1.level > 9);
-    theory.createAchievement(2, ac1, "Pro Robot x11", "Buy 30 upgrades of q1", () => q1.level > 29);
-    theory.createAchievement(3, ac1, "Pro Robot x12", "Buy 5 upgrades of q2", () => q2.level > 4);
-    theory.createAchievement(4, ac1, "Legend", "buy 25 upgrades of c2", () => c2.level > 24);
-    theory.createAchievement(5, ac1, "Legend 2.0", "buy 100 upgrades of q1", () => q1.level > 99);
-    theory.createAchievement(6, ac1, "god", "buy 100 upgrades of q2", () => q2.level > 99);
-    theory.createSecretAchievement(7, ac1, "How?", "buy 1000 upgrades of q1", "spam", () => q1.level > 999);
-    
-    ac2 = theory.createAchievementCategory(1, "Publish and tau");
-    theory.createAchievement(8, ac2, "Pro Beginner", "Publish one time", () => theory.publicationMultiplier > 1);
-    theory.createAchievement(9, ac2, "a hundred", "Make multiplier greater then 100", () => theory.publicationMultiplier > 99.999);
-    theory.createAchievement(10, ac2, "Super power", "Make multiplier greater then 1000", () => theory.publicationMultiplier > 999.999);
-   
-    
-    
-    
-    
-    
-    
-    
-    
-  
-    ///////////////////
-    //// Story chapters
-    chapter1 = theory.createStoryChapter(0, "A new start", "You begin to work on your first theory.\nThats cool,\n \nRight?", () => currency.value > 0);
-    chapter2 = theory.createStoryChapter(1, "Some Progress", "You have some progress now.\nYou started to think if this is possible.\n\nHmm...", () => currency.value > 1e5);
-    chapter3 = theory.createStoryChapter(2, "Publication", "You have a lots of progress now.\nYou can publish some of them,\and make your research faster./n/n Thats cool!", () => currency.value > 1e10);
-  
-                                         
-  
     ///////////////////////
     //// Milestone Upgrades
     theory.setMilestoneCost(new LinearCost(25, 25));
 
     {
-        c1Exp = theory.createMilestoneUpgrade(0, 4);
-        c1Exp.description = Localization.getUpgradeIncCustomExpDesc("c_1", "0.05");
-        c1Exp.info = Localization.getUpgradeIncCustomExpInfo("c_1", "0.05");
-        c1Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
+        q1Exp = theory.createMilestoneUpgrade(0, 4);
+        q1Exp.description = Localization.getUpgradeIncCustomExpDesc("q_1", "0.05");
+        q1Exp.info = Localization.getUpgradeIncCustomExpInfo("q_1", "0.05");
+        q1Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
 
     {
@@ -160,8 +121,8 @@ var init = () => {
 
     {
         c3Term = theory.createMilestoneUpgrade(2, 1);
-        c3Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-1}^{0.25}");
-        c3Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-1}^{0.25}");
+        c3Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-1}^{0.2}");
+        c3Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-1}^{0.2}");
         c3Term.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); updateAvailability(); };
         c3Term.canBeRefunded = (_) => c4Term.level == 0;
     }
@@ -175,8 +136,8 @@ var init = () => {
     }
     {
         c5Term = theory.createMilestoneUpgrade(4, 1);
-        c5Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-3}^{0.35}");
-        c5Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-3}^{0.35}");
+        c5Term.description = Localization.getUpgradeAddTermDesc("\\rho_{n-3}^{0.25}");
+        c5Term.info = Localization.getUpgradeAddTermInfo("\\rho_{n-3}^{0.25}");
         c5Term.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); updateAvailability(); };
         c5Term.isAvailable = false;
     }
@@ -210,15 +171,15 @@ var tick = (elapsedTime, multiplier) => {
         rhoN = currency.value;
 
         let bonus = theory.publicationMultiplier;
-        let vc1 = getC1(c1.level).pow(getC1Exponent(c1Exp.level));
+        let vc1 = getC1(c1.level);
         let vc2 = getC2(c2.level);
         let vc3 = getC3(c3.level);
         let vc4 = getC4(c4.level);
         let vc5 = getC4(c5.level);
         let term1 = vc1 * vc2 * (logTerm.level > 0 ? BigNumber.ONE + rhoN.Max(BigNumber.ONE).log() / BigNumber.HUNDRED : BigNumber.ONE);
-        let term2 = c3Term.level > 0 ? (vc3 * rhoNm1.pow(0.25)) : BigNumber.ZERO;
+        let term2 = c3Term.level > 0 ? (vc3 * rhoNm1.pow(0.2)) : BigNumber.ZERO;
         let term3 = c4Term.level > 0 ? (vc4 * rhoNm2.pow(0.3)) : BigNumber.ZERO;
-        let term4 = c5Term.level > 0 ? (vc5 * rhoNm3.pow(0.35)) : BigNumber.ZERO;
+        let term4 = c5Term.level > 0 ? (vc5 * rhoNm3.pow(0.25)) : BigNumber.ZERO;
 
         currency.value = rhoN + bonus * tickPower * (term1 + term2 + term3 + term4) + epsilon;
 
@@ -239,10 +200,7 @@ var setInternalState = (state) => {
 
 var getPrimaryEquation = () => {
     let result = "\\rho_{n+1} = \\rho_{n}+c_1";
-
-    if (c1Exp.level > 0)
-        result += "^{" + getC1Exponent(c1Exp.level).toString(2) + "}";
-
+    
     result += "c_2";
 
     if (logTerm.level > 0)
@@ -283,13 +241,14 @@ var postPublish = () => {
 }
 
 var getQ1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
+var getQ1Exponent = (level) => BigNumber.from(1 + 0.05 * level);
 var getQ2 = (level) => BigNumber.TWO.pow(level);
+
 var getC1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 1);
-var getC1Exponent = (level) => BigNumber.from(1 + 0.05 * level);
 var getC2 = (level) => BigNumber.TWO.pow(level);
-var getC3 = (level) => BigNumber.TEN.pow(level);
-var getC4 = (level) => BigNumber.TEN.pow(level);
-var getC5 = (level) => BigNumber.TEN.pow(level);
-var getTickspeed = () => getQ1(q1.level) * getQ2(q2.level);
+var getC3 = (level) => BigNumber.SEVEN.pow(level);
+var getC4 = (level) => BigNumber.FIVE.pow(level);
+var getC5 = (level) => BigNumber.THREE.pow(level);
+var getTickspeed = () => getQ1(q1.level).pow(getQ1Exponent(q1Exp.level)) * getQ2(q2.level);
 
 init();
