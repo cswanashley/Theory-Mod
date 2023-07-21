@@ -236,11 +236,11 @@ var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.valu
 var getDQ1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getDQ2 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getDQ3 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
-var getDQ4 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
+var getDQ4 = (level) => BigNumber.TWO.pow(level);
 var getDR1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getDR2 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getDR3 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
-var getDR4 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
+var getDR4 = (level) => BigNumber.TWO.pow(level);
 var getQ1Exp = (level) => BigNumber.from(1 + level * 0.05);
 var getR1Exp = (level) => BigNumber.from(1 + level * 0.05);
 
