@@ -52,9 +52,9 @@ var init = () => {
 
     // q4
     {
-        let getDesc = (level) => "\\dot{q}_4=" + getDQ4(level).toString(0);
+        let getDesc = (level) => "\\dot{q}_4=2^{" + level + "}";
         let getInfo = (level) => "\\dot{q}_4=" + getDQ4(level).toString(0);
-        dq4 = theory.createUpgrade(3, currency, new ExponentialCost(1e50, 7.5 * Math.log2(10)));
+        dq4 = theory.createUpgrade(3, currency, new ExponentialCost(1e45, 7.5 * Math.log2(10)));
         dq4.getDescription = (amount) => Utils.getMath(getDesc(dq4.level));
         dq4.getInfo = (amount) => Utils.getMathTo(getInfo(dq4.level), getInfo(dq4.level + amount));
     }
@@ -88,9 +88,9 @@ var init = () => {
 
     // r4
     {
-        let getDesc = (level) => "\\dot{r}_4=" + getDR4(level).toString(0);
+        let getDesc = (level) => "\\dot{r}_4=2^{" + level + "}";
         let getInfo = (level) => "\\dot{r}_4=" + getDR4(level).toString(0);
-        dr4 = theory.createUpgrade(7, currency, new ExponentialCost(3e50, 7.5 * Math.log2(10)));
+        dr4 = theory.createUpgrade(7, currency, new ExponentialCost(3e48, 7.5 * Math.log2(10)));
         dr4.getDescription = (amount) => Utils.getMath(getDesc(dr4.level));
         dr4.getInfo = (amount) => Utils.getMathTo(getInfo(dr4.level), getInfo(dr4.level + amount));
     }
