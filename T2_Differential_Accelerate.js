@@ -103,7 +103,7 @@ var init = () => {
 
     //////////////////////
     // Checkpoint Upgrades
-    theory.setMilestoneCost(new LinearCost(25, 25));
+    theory.setMilestoneCost(new LinearCost(20, 20));
 
     {
         qTerms = theory.createMilestoneUpgrade(0, 2);
