@@ -8,7 +8,7 @@ var id = "differentials"
 var name = "Differential Calc";
 var description = "An implementation of the 'Differential Calculus' theory from the game.";
 var authors = "Gilles-Philippe Paillé, cswanashley";
-var version = 3;
+var version = 4;
 
 var currency;
 var q1 = BigNumber.ZERO, q2 = BigNumber.ONE, q3 = BigNumber.ONE, q4 = BigNumber.ONE;
@@ -52,7 +52,7 @@ var init = () => {
 
     // q4
     {
-        let getDesc = (level) => "\\dot{q}_4=2^{" + level + "}";
+        let getDesc = (level) => "\\dot{q}_4=2^{" + level + "}-1";
         let getInfo = (level) => "\\dot{q}_4=" + getDQ4(level).toString(0);
         dq4 = theory.createUpgrade(3, currency, new ExponentialCost(1e45, 7.5 * Math.log2(10)));
         dq4.getDescription = (amount) => Utils.getMath(getDesc(dq4.level));
@@ -88,7 +88,7 @@ var init = () => {
 
     // r4
     {
-        let getDesc = (level) => "\\dot{r}_4=2^{" + level + "}";
+        let getDesc = (level) => "\\dot{r}_4=2^{" + level + "}-1";
         let getInfo = (level) => "\\dot{r}_4=" + getDR4(level).toString(0);
         dr4 = theory.createUpgrade(7, currency, new ExponentialCost(3e48, 7.5 * Math.log2(10)));
         dr4.getDescription = (amount) => Utils.getMath(getDesc(dr4.level));
@@ -238,11 +238,11 @@ var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.valu
 var getDQ1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getDQ2 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getDQ3 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
-var getDQ4 = (level) => BigNumber.TWO.pow(level);
+var getDQ4 = (level) => BigNumber.TWO.pow(level) - BigNumber.ONE;
 var getDR1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getDR2 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getDR3 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
-var getDR4 = (level) => BigNumber.TWO.pow(level);
+var getDR4 = (level) => BigNumber.TWO.pow(level) - BigNumber.ONE;
 var getQ1Exp = (level) => BigNumber.from(1 + level * 0.05);
 var getR1Exp = (level) => BigNumber.from(1 + level * 0.05);
 
