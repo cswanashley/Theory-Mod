@@ -8,7 +8,7 @@ var id = "differentials"
 var name = "Differential Calc";
 var description = "An implementation of the 'Differential Calculus' theory from the game.";
 var authors = "Gilles-Philippe Paillé, cswanashley";
-var version = 2;
+var version = 3;
 
 var currency;
 var q1 = BigNumber.ZERO, q2 = BigNumber.ONE, q3 = BigNumber.ONE, q4 = BigNumber.ONE;
@@ -103,7 +103,7 @@ var init = () => {
 
     //////////////////////
     // Checkpoint Upgrades
-    theory.setMilestoneCost(new LinearCost(20, 20));
+    theory.setMilestoneCost(new LinearCost(25, 25));
 
     {
         qTerms = theory.createMilestoneUpgrade(0, 2);
