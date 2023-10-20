@@ -69,7 +69,7 @@ var getDescription = () => {
     return desc;
 }
 var authors = "ducdat0507";
-var version = 4;
+var version = 5;
 
 var currency, currency2, currency3;
 var stage = 0;
@@ -1633,7 +1633,7 @@ var getSecondaryEquation = () => {
     let rVal = `\\dot{\\rho_1} = ${perm2.level > 0 ? "(r_6 + 1)" : ""} \\prod${cur2Unlock.level > 0 ? "^{4}_{i=1}" : "_{i}"}{r_i ${qTerms.level > 0 ? "q_i" : ""}}, \\quad ${theory.latexSymbol} = \\max \\rho_1`;
     if (stage == 1) rVal = `\\dot{\\rho_2} = ${perm1.level > 0 ? "(r_5 + 1)" : ""} \\sum^{8}_{i=5}{r_i}, \\quad \\dot{r_i} = \\frac{-r_i}{${getSkillEffect(9)}}`;
     else if (stage == 2) {
-        let multi = Math.min(gacha, 1 + gachaBulk.level);
+        let multi = Math.min(gacha, 100*(1 + gachaBulk.level));
         if (multi == 0) rVal = "\\text{Insufficient }\\ominus";
         else if (multi == 1) {
             let surpriseThings = [
@@ -1800,7 +1800,7 @@ var getEquationOverlay = () => ui.createGrid({
         if (e.type != TouchType.PRESSED) return;
         if (stage == 2) {
             if (gacha < 1) return;
-            let multi = Math.min(gacha, 1 + gachaBulk.level);
+            let multi = Math.min(gacha, 100*(1 + gachaBulk.level));
             let odds = [5, 4, 3, 2, 1, 0].map((x) => Math.pow(5 - gachaValue.level * .2, x));
             for (let n = 0; n < multi; n++) {
                 let osum = odds.reduce((x, y) => x + y);
