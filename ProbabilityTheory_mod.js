@@ -69,7 +69,7 @@ var getDescription = () => {
     return desc;
 }
 var authors = "ducdat0507";
-var version = 5;
+var version = 6;
 
 var currency, currency2, currency3;
 var stage = 0;
